@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DuVoX - Futuristic Startup Website
 
 A modern, high-performance website built with Next.js 14+, TypeScript, and Tailwind CSS, featuring advanced animations and a futuristic design inspired by SpaceX's aesthetic.
@@ -147,3 +148,6 @@ This foundation is ready for implementing:
 ## 📄 License
 
 This project is private and proprietary to DuVoX.
+=======
+# DuVoX-Labs-Software
+>>>>>>> 3109aeee5fea241c3102c5d1e47f640f2d92a74e
