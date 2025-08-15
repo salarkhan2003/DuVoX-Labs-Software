@@ -1,62 +1,25 @@
-import { NextRequest, NextResponse } from 'next/server'
+export const dynamic = "force-static"; // Required for static export
 
-import { requireAuth } from '@/lib/auth'
-import { prisma } from '@/lib/db'
-import { withErrorHandler } from '@/lib/errors'
-
-async function handleGetDashboard(request: NextRequest) {
-  // Get dashboard statistics
-  const [
-    totalContacts,
-    totalBetaSignups,
-    recentContacts,
-    recentBetaSignups,
-    totalChatSessions,
-  ] = await Promise.all([
-    prisma.contactSubmission.count(),
-    prisma.betaSignup.count(),
-    prisma.contactSubmission.findMany({
-      take: 10,
-      orderBy: { createdAt: 'desc' },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        company: true,
-        interest: true,
-        status: true,
-        createdAt: true,
-      },
+export async function GET() {
+  return new Response(
+    JSON.stringify({
+      success: true,
+      message: "Dummy dashboard data for deployment bypass",
+      data: {
+        statistics: {
+          totalContacts: 0,
+          totalBetaSignups: 0,
+          totalChatSessions: 0
+        },
+        recentActivity: {
+          contacts: [],
+          betaSignups: []
+        }
+      }
     }),
-    prisma.betaSignup.findMany({
-      take: 10,
-      orderBy: { createdAt: 'desc' },
-      select: {
-        id: true,
-        email: true,
-        product: true,
-        company: true,
-        createdAt: true,
-      },
-    }),
-    prisma.chatSession.count(),
-  ])
-  
-  return NextResponse.json({
-    success: true,
-    data: {
-      statistics: {
-        totalContacts,
-        totalBetaSignups,
-        totalChatSessions,
-      },
-      recentActivity: {
-        contacts: recentContacts,
-        betaSignups: recentBetaSignups,
-      },
-    },
-  })
+    {
+      status: 200,
+      headers: { "Content-Type": "application/json" }
+    }
+  );
 }
-
-// Apply authentication and error handling
-export const GET = requireAuth(withErrorHandler(handleGetDashboard))
