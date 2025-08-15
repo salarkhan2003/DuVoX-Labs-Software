@@ -1,4 +1,4 @@
-export const dynamic = "force-static"; // Make sure this works with static output
+export const dynamic = "force-static"; // Required for static export
 
 export async function GET() {
   return new Response(
@@ -6,8 +6,11 @@ export async function GET() {
       status: "healthy",
       timestamp: new Date().toISOString(),
       database: "skipped",
-      version: "1.0.0",
+      version: "1.0.0"
     }),
-    { status: 200, headers: { "Content-Type": "application/json" } }
+    {
+      status: 200,
+      headers: { "Content-Type": "application/json" }
+    }
   );
 }
