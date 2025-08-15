@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+
+import { requireAuth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { withErrorHandler } from '@/lib/errors'
-import { requireAuth } from '@/lib/auth'
 
 async function handleGetDashboard(request: NextRequest) {
   // Get dashboard statistics

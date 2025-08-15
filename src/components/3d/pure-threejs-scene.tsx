@@ -243,8 +243,8 @@ export function PureThreeJSScene({ quality = 'high' }: PureThreeJSSceneProps) {
 
   return (
     <div 
-      ref={mountRef} 
-      className="absolute inset-0 -z-10"
+      className="absolute inset-0 -z-10" 
+      ref={mountRef}
       style={{ 
         opacity: isInitialized ? 1 : 0,
         transition: 'opacity 0.5s ease-in-out'

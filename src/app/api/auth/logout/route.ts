@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { withErrorHandler } from '@/lib/errors'
 
 async function handleLogout(request: NextRequest) {

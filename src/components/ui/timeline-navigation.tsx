@@ -60,18 +60,18 @@ export function TimelineNavigation({
 
   return (
     <div 
-      className={`flex items-center justify-between ${className}`}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role="navigation"
       aria-label="Timeline navigation"
+      className={`flex items-center justify-between ${className}`}
+      role="navigation"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
     >
       {/* Previous Button */}
       <button
-        onClick={onPrevious}
-        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
         aria-label="Previous milestone"
+        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
         disabled={totalItems <= 1}
+        onClick={onPrevious}
       >
         <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
       </button>
@@ -82,15 +82,15 @@ export function TimelineNavigation({
         <div className="flex space-x-2">
           {Array.from({ length: totalItems }, (_, index) => (
             <button
-              key={index}
-              onClick={() => onGoToIndex(index)}
+              aria-current={index === currentIndex ? 'true' : 'false'}
+              aria-label={`Go to milestone ${index + 1}`}
               className={`w-3 h-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 index === currentIndex
                   ? 'bg-blue-500 scale-125'
                   : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
               }`}
-              aria-label={`Go to milestone ${index + 1}`}
-              aria-current={index === currentIndex ? 'true' : 'false'}
+              key={index}
+              onClick={() => onGoToIndex(index)}
             />
           ))}
         </div>
@@ -98,9 +98,9 @@ export function TimelineNavigation({
         {/* Progress Bar */}
         <div className="w-24 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
           <motion.div
+            animate={{ width: `${((currentIndex + 1) / totalItems) * 100}%` }}
             className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
             initial={{ width: 0 }}
-            animate={{ width: `${((currentIndex + 1) / totalItems) * 100}%` }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           />
         </div>
@@ -113,9 +113,9 @@ export function TimelineNavigation({
         {/* Auto-play Toggle */}
         {totalItems > 1 && (
           <button
-            onClick={toggleAutoPlay}
-            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label={isPlaying ? 'Pause auto-play' : 'Start auto-play'}
+            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={toggleAutoPlay}
           >
             {isPlaying ? (
               <Pause className="w-4 h-4 text-gray-700 dark:text-gray-300" />
@@ -128,10 +128,10 @@ export function TimelineNavigation({
 
       {/* Next Button */}
       <button
-        onClick={onNext}
-        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
         aria-label="Next milestone"
+        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
         disabled={totalItems <= 1}
+        onClick={onNext}
       >
         <ChevronRight className="w-5 h-5 text-gray-700 dark:text-gray-300" />
       </button>

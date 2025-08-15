@@ -1,7 +1,7 @@
 'use client';
 
-import { Canvas, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera, AdaptiveDpr, AdaptiveEvents } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Suspense, useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
@@ -26,17 +26,17 @@ function FloatingOrb() {
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, 0]}>
+    <mesh position={[0, 0, 0]} ref={meshRef}>
       <icosahedronGeometry args={[1, 1]} />
       <meshStandardMaterial
-        ref={materialRef}
+        transparent
         color="#3b82f6"
         emissive="#1e40af"
         emissiveIntensity={0.5}
-        roughness={0.1}
         metalness={0.8}
-        transparent
         opacity={0.8}
+        ref={materialRef}
+        roughness={0.1}
       />
     </mesh>
   );
@@ -58,12 +58,12 @@ function GeometricShapes() {
       <mesh position={[-3, 2, -2]}>
         <tetrahedronGeometry args={[0.8]} />
         <meshStandardMaterial
+          transparent
+          wireframe
           color="#8b5cf6"
           emissive="#5b21b6"
           emissiveIntensity={0.3}
-          transparent
           opacity={0.7}
-          wireframe
         />
       </mesh>
       
@@ -71,10 +71,10 @@ function GeometricShapes() {
       <mesh position={[3, -1, -1]}>
         <octahedronGeometry args={[0.6]} />
         <meshStandardMaterial
+          transparent
           color="#06b6d4"
           emissive="#0891b2"
           emissiveIntensity={0.4}
-          transparent
           opacity={0.8}
         />
       </mesh>
@@ -83,12 +83,12 @@ function GeometricShapes() {
       <mesh position={[0, -2, -3]}>
         <dodecahedronGeometry args={[0.5]} />
         <meshStandardMaterial
+          transparent
+          wireframe
           color="#10b981"
           emissive="#059669"
           emissiveIntensity={0.3}
-          transparent
           opacity={0.6}
-          wireframe
         />
       </mesh>
     </group>
@@ -145,25 +145,25 @@ function ParticleField({ quality }: { quality: 'low' | 'medium' | 'high' }) {
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute
+          array={positions}
           attach="attributes-position"
           count={particleCount}
-          array={positions}
           itemSize={3}
         />
         <bufferAttribute
+          array={colors}
           attach="attributes-color"
           count={particleCount}
-          array={colors}
           itemSize={3}
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.03}
-        vertexColors
-        transparent
-        opacity={0.8}
         sizeAttenuation
+        transparent
+        vertexColors
         blending={THREE.AdditiveBlending}
+        opacity={0.8}
+        size={0.03}
       />
     </points>
   );
@@ -213,15 +213,15 @@ function ConnectedNodes() {
       <lineSegments ref={lineRef}>
         <bufferGeometry>
           <bufferAttribute
+            array={linePositions}
             attach="attributes-position"
             count={linePositions.length / 3}
-            array={linePositions}
             itemSize={3}
           />
         </bufferGeometry>
         <lineBasicMaterial
-          color="#3b82f6"
           transparent
+          color="#3b82f6"
           opacity={0.3}
         />
       </lineSegments>
@@ -265,14 +265,14 @@ export function EnhancedScene3D({ quality = 'high' }: EnhancedScene3DProps) {
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas
+        camera={{ position: [0, 0, 8], fov: 60 }}
         dpr={settings.pixelRatio}
+        frameloop="demand"
         gl={{
           antialias: settings.antialias,
           alpha: true,
           powerPreference: 'high-performance',
         }}
-        camera={{ position: [0, 0, 8], fov: 60 }}
-        frameloop="demand"
       >
         <Suspense fallback={null}>
           {/* Adaptive performance components */}
@@ -280,29 +280,29 @@ export function EnhancedScene3D({ quality = 'high' }: EnhancedScene3DProps) {
           <AdaptiveEvents />
           
           {/* Camera */}
-          <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={60} />
+          <PerspectiveCamera makeDefault fov={60} position={[0, 0, 8]} />
           
           {/* Lighting setup */}
           <ambientLight intensity={0.3} />
           <directionalLight
-            position={[10, 10, 5]}
-            intensity={0.8}
-            color="#ffffff"
             castShadow={settings.shadows}
+            color="#ffffff"
+            intensity={0.8}
+            position={[10, 10, 5]}
           />
           <pointLight
-            position={[-10, -10, -10]}
-            intensity={0.6}
             color="#8b5cf6"
-            distance={20}
             decay={2}
+            distance={20}
+            intensity={0.6}
+            position={[-10, -10, -10]}
           />
           <pointLight
-            position={[10, -10, 10]}
-            intensity={0.4}
             color="#06b6d4"
-            distance={15}
             decay={2}
+            distance={15}
+            intensity={0.4}
+            position={[10, -10, 10]}
           />
           
           {/* 3D Objects */}
@@ -312,7 +312,7 @@ export function EnhancedScene3D({ quality = 'high' }: EnhancedScene3DProps) {
           <ConnectedNodes />
           
           {/* Fog for depth */}
-          <fog attach="fog" args={['#000000', 8, 25]} />
+          <fog args={['#000000', 8, 25]} attach="fog" />
         </Suspense>
       </Canvas>
     </div>

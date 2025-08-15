@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Baby, Car, Shield, Zap, Heart, Brain } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 const products = [
   {
@@ -52,14 +53,14 @@ export function ProductsSection() {
   });
 
   return (
-    <section id="products" className="py-20 bg-white dark:bg-gray-900">
+    <section className="py-20 bg-white dark:bg-gray-900" id="products">
       <div className="container mx-auto px-4">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          ref={ref}
+          transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
             Our Products
@@ -72,13 +73,13 @@ export function ProductsSection() {
         <div className="space-y-20">
           {products.map((product, index) => (
             <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.3 }}
               className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
                 index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
               }`}
+              initial={{ opacity: 0, y: 50 }}
+              key={product.id}
+              transition={{ duration: 0.8, delay: index * 0.3 }}
             >
               {/* Product Info */}
               <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
@@ -103,23 +104,23 @@ export function ProductsSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                   {product.features.map((feature, featureIndex) => (
                     <motion.div
-                      key={feature}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
                       className="flex items-center space-x-3"
                       initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      key={feature}
                       transition={{ duration: 0.5, delay: index * 0.3 + featureIndex * 0.1 }}
                     >
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${product.gradient}`}></div>
+                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${product.gradient}`} />
                       <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className={`bg-gradient-to-r ${product.gradient} hover:opacity-90`}>
+                  <Button className={`bg-gradient-to-r ${product.gradient} hover:opacity-90`} size="lg">
                     Learn More
                   </Button>
-                  <Button variant="outline" size="lg">
+                  <Button size="lg" variant="outline">
                     Join Beta
                   </Button>
                 </div>
@@ -131,8 +132,8 @@ export function ProductsSection() {
                   <CardContent className="p-0 text-center">
                     <motion.div
                       className={`w-32 h-32 mx-auto mb-8 bg-gradient-to-r ${product.gradient} rounded-full flex items-center justify-center shadow-lg`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.3 }}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
                     >
                       <product.icon className="w-16 h-16 text-white" />
                     </motion.div>
@@ -141,30 +142,30 @@ export function ProductsSection() {
                       {product.id === 'cradai' ? (
                         <>
                           <div className="text-center">
-                            <Heart className={`w-8 h-8 mx-auto mb-2 text-pink-500`} />
+                            <Heart className="w-8 h-8 mx-auto mb-2 text-pink-500" />
                             <div className="text-sm text-gray-600 dark:text-gray-400">Health Monitor</div>
                           </div>
                           <div className="text-center">
-                            <Shield className={`w-8 h-8 mx-auto mb-2 text-green-500`} />
+                            <Shield className="w-8 h-8 mx-auto mb-2 text-green-500" />
                             <div className="text-sm text-gray-600 dark:text-gray-400">Safety First</div>
                           </div>
                           <div className="text-center">
-                            <Brain className={`w-8 h-8 mx-auto mb-2 text-purple-500`} />
+                            <Brain className="w-8 h-8 mx-auto mb-2 text-purple-500" />
                             <div className="text-sm text-gray-600 dark:text-gray-400">AI Powered</div>
                           </div>
                         </>
                       ) : (
                         <>
                           <div className="text-center">
-                            <Zap className={`w-8 h-8 mx-auto mb-2 text-yellow-500`} />
+                            <Zap className="w-8 h-8 mx-auto mb-2 text-yellow-500" />
                             <div className="text-sm text-gray-600 dark:text-gray-400">Real-time</div>
                           </div>
                           <div className="text-center">
-                            <Shield className={`w-8 h-8 mx-auto mb-2 text-green-500`} />
+                            <Shield className="w-8 h-8 mx-auto mb-2 text-green-500" />
                             <div className="text-sm text-gray-600 dark:text-gray-400">Safety</div>
                           </div>
                           <div className="text-center">
-                            <Brain className={`w-8 h-8 mx-auto mb-2 text-purple-500`} />
+                            <Brain className="w-8 h-8 mx-auto mb-2 text-purple-500" />
                             <div className="text-sm text-gray-600 dark:text-gray-400">Intelligent</div>
                           </div>
                         </>

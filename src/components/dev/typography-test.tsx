@@ -101,7 +101,7 @@ export function TypographyTest() {
         <h2 className="text-2xl font-bold text-primary">Font Weights</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Object.entries(FONT_WEIGHTS).map(([name, className]) => (
-            <div key={name} className="p-4 border border-border rounded-lg">
+            <div className="p-4 border border-border rounded-lg" key={name}>
               <h4 className="text-sm font-medium text-secondary uppercase tracking-wide mb-2">
                 {name} ({className})
               </h4>
@@ -118,7 +118,7 @@ export function TypographyTest() {
         <h2 className="text-2xl font-bold text-primary">Text Gradients</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {Object.entries(TEXT_GRADIENTS).map(([name, className]) => (
-            <div key={name} className="p-6 border border-border rounded-lg">
+            <div className="p-6 border border-border rounded-lg" key={name}>
               <h3 className={`text-3xl font-bold ${className} mb-2`}>
                 {name.charAt(0).toUpperCase() + name.slice(1)} Gradient
               </h3>
@@ -135,16 +135,16 @@ export function TypographyTest() {
         <h2 className="text-2xl font-bold text-primary">Navigation Typography</h2>
         <div className="p-6 border border-border rounded-lg">
           <nav className="flex space-x-6">
-            <a href="#" className={getTypographyVariant('navLink')}>
+            <a className={getTypographyVariant('navLink')} href="#">
               Home
             </a>
-            <a href="#" className={getTypographyVariant('navLinkActive')}>
+            <a className={getTypographyVariant('navLinkActive')} href="#">
               About (Active)
             </a>
-            <a href="#" className={getTypographyVariant('navLink')}>
+            <a className={getTypographyVariant('navLink')} href="#">
               Products
             </a>
-            <a href="#" className={getTypographyVariant('navLink')}>
+            <a className={getTypographyVariant('navLink')} href="#">
               Contact
             </a>
           </nav>
@@ -176,9 +176,9 @@ export function TypographyTest() {
               Email Address
             </label>
             <input
-              type="email"
-              placeholder="Enter your email"
               className={`w-full mt-1 px-3 py-2 border border-border rounded-lg ${getTypographyVariant('formInput')}`}
+              placeholder="Enter your email"
+              type="email"
             />
             <p className={getTypographyVariant('formHelper')}>
               We'll never share your email with anyone else.
@@ -190,9 +190,9 @@ export function TypographyTest() {
               Password
             </label>
             <input
-              type="password"
-              placeholder="Enter your password"
               className={`w-full mt-1 px-3 py-2 border border-red-300 rounded-lg ${getTypographyVariant('formInput')}`}
+              placeholder="Enter your password"
+              type="password"
             />
             <p className={getTypographyVariant('formError')}>
               Password must be at least 8 characters long.
@@ -209,13 +209,13 @@ export function TypographyTest() {
             Company
           </h3>
           <nav className="space-y-2">
-            <a href="#" className={`block ${getTypographyVariant('footerLink')}`}>
+            <a className={`block ${getTypographyVariant('footerLink')}`} href="#">
               About Us
             </a>
-            <a href="#" className={`block ${getTypographyVariant('footerLink')}`}>
+            <a className={`block ${getTypographyVariant('footerLink')}`} href="#">
               Careers
             </a>
-            <a href="#" className={`block ${getTypographyVariant('footerLink')}`}>
+            <a className={`block ${getTypographyVariant('footerLink')}`} href="#">
               Contact
             </a>
           </nav>

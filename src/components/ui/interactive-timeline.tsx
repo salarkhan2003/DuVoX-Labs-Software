@@ -1,12 +1,14 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, Target, Rocket, Users } from 'lucide-react';
-import { TimelineNavigation } from './timeline-navigation';
-import { categoryIconMap } from './timeline-icons';
+import { useRef, useState, useEffect } from 'react';
+
+import { Card, CardContent } from '@/components/ui/card';
+
 import { useScreenReaderAnnouncement } from './screen-reader-announcer';
+import { categoryIconMap } from './timeline-icons';
+import { TimelineNavigation } from './timeline-navigation';
 
 export interface TimelineMilestone {
   id: string;
@@ -85,24 +87,24 @@ export function InteractiveTimeline({
 
   return (
     <div 
-      ref={timelineRef} 
+      aria-label="Company timeline" 
       className={`relative ${className}`}
+      ref={timelineRef}
       role="region"
-      aria-label="Company timeline"
     >
       {/* Skip link for keyboard users */}
       <a
-        href="#timeline-end"
         className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
+        href="#timeline-end"
       >
         Skip timeline
       </a>
       {/* Timeline Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }}
         className="text-center mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.6 }}
       >
         <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
           Our Journey
@@ -116,22 +118,22 @@ export function InteractiveTimeline({
       <div className="hidden lg:block relative">
         {/* SVG Timeline Line */}
         <svg
-          className="absolute left-1/2 transform -translate-x-1/2 w-2 h-full"
-          viewBox="0 0 8 100"
-          preserveAspectRatio="none"
           aria-hidden="true"
+          className="absolute left-1/2 transform -translate-x-1/2 w-2 h-full"
+          preserveAspectRatio="none"
+          viewBox="0 0 8 100"
         >
           <motion.path
+            animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
             d="M4 0 L4 100"
-            stroke="url(#timelineGradient)"
-            strokeWidth="2"
             fill="none"
             initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+            stroke="url(#timelineGradient)"
+            strokeWidth="2"
             transition={{ duration: 2, ease: "easeInOut" }}
           />
           <defs>
-            <linearGradient id="timelineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="timelineGradient" x1="0%" x2="0%" y1="0%" y2="100%">
               <stop offset="0%" stopColor="#3b82f6" />
               <stop offset="50%" stopColor="#8b5cf6" />
               <stop offset="100%" stopColor="#06b6d4" />
@@ -148,24 +150,24 @@ export function InteractiveTimeline({
 
             return (
               <motion.div
-                key={milestone.id}
-                initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeft ? -50 : 50 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
                 className={`flex items-center ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
+                initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                key={milestone.id}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 {/* Content */}
                 <div className={`w-5/12 ${isLeft ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
                   <Card 
+                    aria-describedby={`milestone-${milestone.id}-details`}
+                    aria-expanded={selectedMilestone === milestone.id}
                     className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-xl ${
                       selectedMilestone === milestone.id ? 'ring-2 ring-blue-500 shadow-xl' : ''
                     }`}
+                    role="button"
+                    tabIndex={0}
                     onClick={() => setSelectedMilestone(selectedMilestone === milestone.id ? null : milestone.id)}
                     onKeyDown={(e) => handleKeyDown(e, milestone.id)}
-                    tabIndex={0}
-                    role="button"
-                    aria-expanded={selectedMilestone === milestone.id}
-                    aria-describedby={`milestone-${milestone.id}-details`}
                   >
                     <CardContent className="p-0">
                       <div className={`text-2xl font-bold bg-gradient-to-r ${colorClass} bg-clip-text text-transparent mb-2`}>
@@ -180,15 +182,15 @@ export function InteractiveTimeline({
                       
                       {/* Expanded Details */}
                       <motion.div
-                        id={`milestone-${milestone.id}-details`}
-                        initial={{ height: 0, opacity: 0 }}
                         animate={
                           selectedMilestone === milestone.id
                             ? { height: 'auto', opacity: 1 }
                             : { height: 0, opacity: 0 }
                         }
-                        transition={{ duration: 0.3 }}
                         className="overflow-hidden"
+                        id={`milestone-${milestone.id}-details`}
+                        initial={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
                       >
                         {milestone.details && (
                           <p className="text-sm text-gray-500 dark:text-gray-500 mb-3">
@@ -198,7 +200,7 @@ export function InteractiveTimeline({
                         {milestone.achievements && (
                           <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                             {milestone.achievements.map((achievement, i) => (
-                              <li key={i} className="flex items-center">
+                              <li className="flex items-center" key={i}>
                                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2 flex-shrink-0" />
                                 {achievement}
                               </li>
@@ -212,16 +214,16 @@ export function InteractiveTimeline({
 
                 {/* Timeline Node */}
                 <motion.div
+                  animate={isInView ? { scale: 1 } : { scale: 0 }}
                   className={`relative z-10 w-12 h-12 bg-gradient-to-r ${colorClass} rounded-full flex items-center justify-center border-4 border-white dark:border-gray-900 shadow-lg`}
                   initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : { scale: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
                   whileHover={{ scale: 1.1 }}
                 >
                   {milestone.category && categoryIconMap[milestone.category] ? (
                     (() => {
                       const CustomIcon = categoryIconMap[milestone.category];
-                      return <CustomIcon className="w-6 h-6 text-white" animate={isInView} />;
+                      return <CustomIcon animate={isInView} className="w-6 h-6 text-white" />;
                     })()
                   ) : (
                     <Icon className="w-6 h-6 text-white" />
@@ -242,23 +244,23 @@ export function InteractiveTimeline({
         {showNavigation && (
           <div className="mb-6">
             <TimelineNavigation
-              currentIndex={currentIndex}
-              totalItems={milestones.length}
-              onPrevious={handlePrevious}
-              onNext={handleNext}
-              onGoToIndex={goToIndex}
               autoPlay={autoPlay}
               autoPlayInterval={autoPlayInterval}
+              currentIndex={currentIndex}
+              totalItems={milestones.length}
+              onGoToIndex={goToIndex}
+              onNext={handleNext}
+              onPrevious={handlePrevious}
             />
           </div>
         )}
 
         {/* Current Milestone */}
         <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: 20 }}
+          key={currentIndex}
           transition={{ duration: 0.3 }}
         >
           {milestones[currentIndex] && (
@@ -269,7 +271,7 @@ export function InteractiveTimeline({
                     {milestones[currentIndex].category && categoryIconMap[milestones[currentIndex].category] ? (
                       (() => {
                         const CustomIcon = categoryIconMap[milestones[currentIndex].category];
-                        return <CustomIcon className="w-6 h-6 text-white" animate={true} />;
+                        return <CustomIcon animate={true} className="w-6 h-6 text-white" />;
                       })()
                     ) : (
                       (() => {
@@ -300,7 +302,7 @@ export function InteractiveTimeline({
                 {milestones[currentIndex].achievements && (
                   <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
                     {milestones[currentIndex].achievements.map((achievement, i) => (
-                      <li key={i} className="flex items-center">
+                      <li className="flex items-center" key={i}>
                         <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2 flex-shrink-0" />
                         {achievement}
                       </li>
@@ -314,7 +316,7 @@ export function InteractiveTimeline({
       </div>
 
       {/* Timeline end marker for skip link */}
-      <div id="timeline-end" className="sr-only">End of timeline</div>
+      <div className="sr-only" id="timeline-end">End of timeline</div>
     </div>
   );
 }

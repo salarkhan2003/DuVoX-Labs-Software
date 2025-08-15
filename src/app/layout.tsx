@@ -75,33 +75,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang="en" className="scroll-smooth">
+    <html suppressHydrationWarning className="scroll-smooth" lang="en">
       <head>
         {/* Preload critical font weights */}
         <link
-          rel="preload"
+          as="font"
+          crossOrigin="anonymous"
           href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2"
-          as="font"
+          rel="preload"
           type="font/woff2"
-          crossOrigin="anonymous"
         />
         <link
-          rel="preload"
+          as="font"
+          crossOrigin="anonymous"
           href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459W1hyyTh89Y.woff2"
-          as="font"
+          rel="preload"
           type="font/woff2"
-          crossOrigin="anonymous"
         />
         <link
-          rel="preload"
-          href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WRhyyTh89Y.woff2"
           as="font"
-          type="font/woff2"
           crossOrigin="anonymous"
+          href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WRhyyTh89Y.woff2"
+          rel="preload"
+          type="font/woff2"
         />
         {/* Theme color meta tags */}
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
+        <meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color" />
+        <meta content="#111827" media="(prefers-color-scheme: dark)" name="theme-color" />
       </head>
       <body className={`${montserrat.variable} font-sans antialiased transition-colors duration-300`}>
         {children}

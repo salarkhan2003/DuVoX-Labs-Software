@@ -32,8 +32,8 @@ export function FallbackScene3D({ quality = 'high' }: FallbackScene3DProps) {
       {/* Floating Particles */}
       {Array.from({ length: particleCount }).map((_, i) => (
         <div
-          key={i}
           className="absolute w-1 h-1 bg-blue-400 rounded-full animate-pulse"
+          key={i}
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -53,7 +53,7 @@ export function FallbackScene3D({ quality = 'high' }: FallbackScene3DProps) {
       {/* Animated Lines */}
       <svg className="absolute inset-0 w-full h-full opacity-20">
         <defs>
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="100%">
             <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
             <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.3" />
             <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.1" />
@@ -61,15 +61,15 @@ export function FallbackScene3D({ quality = 'high' }: FallbackScene3DProps) {
         </defs>
         
         {/* Animated connecting lines */}
-        <line x1="25%" y1="25%" x2="75%" y2="75%" stroke="url(#lineGradient)" strokeWidth="1">
-          <animate attributeName="opacity" values="0.1;0.5;0.1" dur="4s" repeatCount="indefinite" />
+        <line stroke="url(#lineGradient)" strokeWidth="1" x1="25%" x2="75%" y1="25%" y2="75%">
+          <animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0.1;0.5;0.1" />
         </line>
-        <line x1="75%" y1="25%" x2="25%" y2="75%" stroke="url(#lineGradient)" strokeWidth="1">
-          <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" repeatCount="indefinite" />
+        <line stroke="url(#lineGradient)" strokeWidth="1" x1="75%" x2="25%" y1="25%" y2="75%">
+          <animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0.5;0.1;0.5" />
         </line>
-        <circle cx="50%" cy="50%" r="100" fill="none" stroke="url(#lineGradient)" strokeWidth="1">
-          <animate attributeName="r" values="50;150;50" dur="6s" repeatCount="indefinite" />
-          <animate attributeName="opacity" values="0.3;0.1;0.3" dur="6s" repeatCount="indefinite" />
+        <circle cx="50%" cy="50%" fill="none" r="100" stroke="url(#lineGradient)" strokeWidth="1">
+          <animate attributeName="r" dur="6s" repeatCount="indefinite" values="50;150;50" />
+          <animate attributeName="opacity" dur="6s" repeatCount="indefinite" values="0.3;0.1;0.3" />
         </circle>
       </svg>
       

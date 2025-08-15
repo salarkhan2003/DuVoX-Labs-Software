@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { prisma } from '@/lib/db'
-import { validateRequestBody, chatMessageSchema, type ChatMessageData } from '@/lib/validation'
 import { withErrorHandler, AppError, ErrorCodes } from '@/lib/errors'
 import { withRateLimit, rateLimitConfigs } from '@/lib/rate-limit'
+import { validateRequestBody, chatMessageSchema, type ChatMessageData } from '@/lib/validation'
 
 async function handleChatMessage(request: NextRequest) {
   // Validate request body

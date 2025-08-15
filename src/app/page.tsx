@@ -1,13 +1,13 @@
 'use client';
 
-import { Navigation } from '@/components/layout/navigation';
-import { HeroSection } from '@/components/sections/hero';
-import { AboutSection } from '@/components/sections/about';
-import { ProductsSection } from '@/components/sections/products';
-import { FounderSection } from '@/components/sections/founder';
-import { ContactSection } from '@/components/sections/contact';
 import { Footer } from '@/components/layout/footer';
+import { Navigation } from '@/components/layout/navigation';
 import { ThemeProvider } from '@/components/providers/theme-provider';
+import { AboutSection } from '@/components/sections/about';
+import { ContactSection } from '@/components/sections/contact';
+import { FounderSection } from '@/components/sections/founder';
+import { HeroSection } from '@/components/sections/hero';
+import { ProductsSection } from '@/components/sections/products';
 import { ScrollIndicator, SectionProgress } from '@/components/ui/scroll-indicator';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
@@ -31,7 +31,7 @@ function HomeContent() {
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
       <Navigation />
       <ScrollIndicator showProgress={true} showScrollToTop={true} />
-      <SectionProgress sections={sections} activeSection={activeSection} />
+      <SectionProgress activeSection={activeSection} sections={sections} />
       
       <main>
         <div id="hero">

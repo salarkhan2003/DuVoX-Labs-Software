@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
+
+import { hashPassword, generateToken } from '@/lib/auth'
 import { prisma } from '@/lib/db'
-import { validateRequestBody, registerSchema, type RegisterData } from '@/lib/validation'
 import { withErrorHandler, AppError, ErrorCodes } from '@/lib/errors'
 import { withRateLimit, rateLimitConfigs } from '@/lib/rate-limit'
-import { hashPassword, generateToken } from '@/lib/auth'
+import { validateRequestBody, registerSchema, type RegisterData } from '@/lib/validation'
 
 async function handleRegister(request: NextRequest) {
   // Validate request body

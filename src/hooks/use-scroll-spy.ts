@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+
 import { throttle } from '@/lib/utils';
 
 interface ScrollSpyOptions {

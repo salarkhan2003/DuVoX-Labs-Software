@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
 import dynamic from 'next/dynamic';
+import React from 'react';
 import { Suspense, useState, useEffect } from 'react';
+
 import { FallbackScene3D } from './fallback-scene';
 
 interface DynamicScene3DProps {

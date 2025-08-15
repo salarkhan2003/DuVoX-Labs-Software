@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+
+import { ScrollReveal, FadeInUp, StaggeredReveal } from '@/components/animations/scroll-reveal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
-import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import { ScrollIndicator, SectionProgress, AnimatedScrollDown } from '@/components/ui/scroll-indicator';
-import { ScrollReveal, FadeInUp, StaggeredReveal } from '@/components/animations/scroll-reveal';
+import { useScrollSpy } from '@/hooks/use-scroll-spy';
+import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 const testSections = [
   { id: 'section1', name: 'Section 1', color: 'bg-blue-500' },
@@ -43,7 +44,7 @@ export function NavigationTest() {
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       {/* Scroll Indicators */}
       <ScrollIndicator showProgress={true} showScrollToTop={true} />
-      <SectionProgress sections={testSections} activeSection={activeSection} />
+      <SectionProgress activeSection={activeSection} sections={testSections} />
       
       {/* Test Controls */}
       <div className="fixed top-4 left-4 z-50 max-w-sm">
@@ -63,20 +64,20 @@ export function NavigationTest() {
               <p className="text-sm font-medium">Quick Navigation:</p>
               {testSections.map(section => (
                 <Button
+                  className="w-full text-left justify-start"
                   key={section.id}
                   size="sm"
                   variant={activeSection === section.id ? "primary" : "outline"}
                   onClick={() => testSmoothScroll(section.id)}
-                  className="w-full text-left justify-start"
                 >
                   {section.name}
                 </Button>
               ))}
               <Button
+                className="w-full"
                 size="sm"
                 variant="secondary"
                 onClick={testScrollToTop}
-                className="w-full"
               >
                 Scroll to Top
               </Button>
@@ -86,7 +87,7 @@ export function NavigationTest() {
               <p className="text-sm font-medium mb-2">Test Results:</p>
               <div className="text-xs space-y-1">
                 {testResults.slice(-5).map((result, index) => (
-                  <div key={index} className="text-gray-600 dark:text-gray-400">
+                  <div className="text-gray-600 dark:text-gray-400" key={index}>
                     {result}
                   </div>
                 ))}
@@ -100,14 +101,14 @@ export function NavigationTest() {
       <div className="pt-20">
         {testSections.map((section, index) => (
           <section
-            key={section.id}
-            id={section.id}
             className={`min-h-screen flex items-center justify-center ${section.color} text-white relative`}
+            id={section.id}
+            key={section.id}
           >
             <div className="text-center max-w-4xl mx-auto px-4">
               <ScrollReveal
-                direction={index % 2 === 0 ? 'left' : 'right'}
                 delay={0.2}
+                direction={index % 2 === 0 ? 'left' : 'right'}
               >
                 <h2 className="text-6xl font-bold mb-8">{section.name}</h2>
                 <p className="text-xl mb-8">
@@ -116,9 +117,9 @@ export function NavigationTest() {
                 </p>
               </ScrollReveal>
 
-              <StaggeredReveal staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <StaggeredReveal className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" staggerDelay={0.1}>
                 {[1, 2, 3].map(item => (
-                  <Card key={item} className="bg-white/10 backdrop-blur-sm border-white/20">
+                  <Card className="bg-white/10 backdrop-blur-sm border-white/20" key={item}>
                     <CardContent className="p-6 text-center">
                       <h3 className="text-2xl font-bold mb-4">Feature {item}</h3>
                       <p className="text-white/80">
@@ -131,8 +132,8 @@ export function NavigationTest() {
 
               {index < testSections.length - 1 && testSections[index + 1] && (
                 <AnimatedScrollDown 
-                  targetSection={`#${testSections[index + 1].id}`}
                   className="text-white/80 hover:text-white"
+                  targetSection={`#${testSections[index + 1].id}`}
                 />
               )}
             </div>
@@ -153,9 +154,9 @@ export function NavigationTest() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Array.from({ length: 20 }, (_, i) => (
               <ScrollReveal
-                key={i}
                 delay={i * 0.05}
                 direction={i % 4 === 0 ? 'up' : i % 4 === 1 ? 'down' : i % 4 === 2 ? 'left' : 'right'}
+                key={i}
               >
                 <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-4">
                   <div className="text-center">

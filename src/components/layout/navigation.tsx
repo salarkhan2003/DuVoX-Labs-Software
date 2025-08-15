@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon, Monitor } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+
 import { useThemeContext } from '@/components/providers/theme-provider';
+import { Button } from '@/components/ui/button';
 import { useScroll } from '@/hooks/use-scroll';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
@@ -54,13 +55,13 @@ export function Navigation() {
 
   return (
     <motion.nav
+      animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white/80 backdrop-blur-md shadow-lg dark:bg-gray-900/80'
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4">
@@ -79,22 +80,22 @@ export function Navigation() {
               const isActive = activeSection === item.id;
               return (
                 <motion.button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                     isActive
                       ? 'text-blue-600 dark:text-blue-400'
                       : 'text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'
                   }`}
+                  key={item.name}
                   whileHover={{ y: -2 }}
                   whileTap={{ y: 0 }}
+                  onClick={() => scrollToSection(item.href)}
                 >
                   {item.name}
                   {isActive && (
                     <motion.div
                       className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
-                      layoutId="activeSection"
                       initial={false}
+                      layoutId="activeSection"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -104,35 +105,35 @@ export function Navigation() {
             
             {/* Theme Toggle */}
             <motion.button
-              onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-200"
+              title={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} mode`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              title={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} mode`}
+              onClick={toggleTheme}
             >
               {getThemeIcon()}
             </motion.button>
             
-            <Button size="sm" className="ml-2">Join Waitlist</Button>
+            <Button className="ml-2" size="sm">Join Waitlist</Button>
           </div>
 
           {/* Mobile Menu Button and Theme Toggle */}
           <div className="md:hidden flex items-center space-x-2">
             <motion.button
-              onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-200"
+              title={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} mode`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              title={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} mode`}
+              onClick={toggleTheme}
             >
               {getThemeIcon()}
             </motion.button>
             
             <motion.button
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -143,10 +144,10 @@ export function Navigation() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden bg-white/95 backdrop-blur-md dark:bg-gray-900/95 rounded-lg mt-2 p-4 shadow-lg"
-              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
+              className="md:hidden bg-white/95 backdrop-blur-md dark:bg-gray-900/95 rounded-lg mt-2 p-4 shadow-lg"
               exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
             >
               <div className="flex flex-col space-y-4">
@@ -154,22 +155,22 @@ export function Navigation() {
                   const isActive = activeSection === item.id;
                   return (
                     <motion.button
-                      key={item.name}
-                      onClick={() => scrollToSection(item.href)}
                       className={`text-left px-3 py-2 rounded-lg transition-colors duration-200 ${
                         isActive
                           ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                           : 'text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                       }`}
+                      key={item.name}
                       whileHover={{ x: 4 }}
                       whileTap={{ x: 0 }}
+                      onClick={() => scrollToSection(item.href)}
                     >
                       {item.name}
                     </motion.button>
                   );
                 })}
                 <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <Button size="sm" className="w-full">Join Waitlist</Button>
+                  <Button className="w-full" size="sm">Join Waitlist</Button>
                 </div>
               </div>
             </motion.div>

@@ -21,17 +21,17 @@ export function FloatingOrb() {
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, 0]}>
+    <mesh position={[0, 0, 0]} ref={meshRef}>
       <icosahedronGeometry args={[1, 1]} />
       <meshStandardMaterial
-        ref={materialRef}
+        transparent
         color="#3b82f6"
         emissive="#1e40af"
         emissiveIntensity={0.5}
-        roughness={0.1}
         metalness={0.8}
-        transparent
         opacity={0.8}
+        ref={materialRef}
+        roughness={0.1}
       />
     </mesh>
   );
@@ -53,12 +53,12 @@ export function GeometricShapes() {
       <mesh position={[-3, 2, -2]}>
         <tetrahedronGeometry args={[0.8]} />
         <meshStandardMaterial
+          transparent
+          wireframe
           color="#8b5cf6"
           emissive="#5b21b6"
           emissiveIntensity={0.3}
-          transparent
           opacity={0.7}
-          wireframe
         />
       </mesh>
       
@@ -66,10 +66,10 @@ export function GeometricShapes() {
       <mesh position={[3, -1, -1]}>
         <octahedronGeometry args={[0.6]} />
         <meshStandardMaterial
+          transparent
           color="#06b6d4"
           emissive="#0891b2"
           emissiveIntensity={0.4}
-          transparent
           opacity={0.8}
         />
       </mesh>
@@ -78,12 +78,12 @@ export function GeometricShapes() {
       <mesh position={[0, -2, -3]}>
         <dodecahedronGeometry args={[0.5]} />
         <meshStandardMaterial
+          transparent
+          wireframe
           color="#10b981"
           emissive="#059669"
           emissiveIntensity={0.3}
-          transparent
           opacity={0.6}
-          wireframe
         />
       </mesh>
     </group>
@@ -139,25 +139,25 @@ export function ParticleField() {
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute
+          array={positions}
           attach="attributes-position"
           count={particleCount}
-          array={positions}
           itemSize={3}
         />
         <bufferAttribute
+          array={colors}
           attach="attributes-color"
           count={particleCount}
-          array={colors}
           itemSize={3}
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.03}
-        vertexColors
-        transparent
-        opacity={0.8}
         sizeAttenuation
+        transparent
+        vertexColors
         blending={THREE.AdditiveBlending}
+        opacity={0.8}
+        size={0.03}
       />
     </points>
   );
@@ -207,15 +207,15 @@ export function ConnectedNodes() {
       <lineSegments ref={lineRef}>
         <bufferGeometry>
           <bufferAttribute
+            array={linePositions}
             attach="attributes-position"
             count={linePositions.length / 3}
-            array={linePositions}
             itemSize={3}
           />
         </bufferGeometry>
         <lineBasicMaterial
-          color="#3b82f6"
           transparent
+          color="#3b82f6"
           opacity={0.3}
         />
       </lineSegments>

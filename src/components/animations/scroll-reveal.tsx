@@ -78,16 +78,16 @@ export function ScrollReveal({
 
   return (
     <motion.div
-      ref={ref}
-      initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
+      className={className}
+      initial="hidden"
+      ref={ref}
       transition={{
         duration,
         delay: staggerChildren ? 0 : delay,
         ease: [0.25, 0.25, 0.25, 0.75]
       }}
-      className={className}
+      variants={containerVariants}
     >
       {staggerChildren ? (
         Array.isArray(children) ? (
@@ -161,8 +161,8 @@ export function ParallaxScroll({
   
   return (
     <motion.div
-      ref={ref}
       className={className}
+      ref={ref}
       style={{
         y: useInView(ref) ? 0 : speed * 100
       }}

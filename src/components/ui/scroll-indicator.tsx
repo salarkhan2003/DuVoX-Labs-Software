@@ -1,8 +1,9 @@
 'use client';
 
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { ChevronDown, ArrowUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 interface ScrollIndicatorProps {
@@ -47,16 +48,16 @@ export function ScrollIndicator({
       {/* Scroll to Top Button */}
       {showScrollToTop && (
         <motion.button
-          className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0 }}
           animate={{ 
             opacity: showScrollTop ? 1 : 0, 
             scale: showScrollTop ? 1 : 0 
           }}
+          aria-label="Scroll to top"
+          className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => scrollToTop()}
-          aria-label="Scroll to top"
         >
           <ArrowUp size={20} />
         </motion.button>
@@ -78,13 +79,13 @@ export function AnimatedScrollDown({
 
   return (
     <motion.button
-      className={`flex flex-col items-center space-y-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 ${className}`}
-      onClick={() => scrollToElement(targetSection)}
-      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      aria-label="Scroll down to next section"
+      className={`flex flex-col items-center space-y-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 ${className}`}
+      initial={{ opacity: 0, y: 20 }}
       transition={{ delay: 1, duration: 0.8 }}
       whileHover={{ y: -2 }}
-      aria-label="Scroll down to next section"
+      onClick={() => scrollToElement(targetSection)}
     >
       <span className="text-sm font-medium">Scroll Down</span>
       <motion.div
@@ -123,12 +124,12 @@ export function SectionProgress({
           
           return (
             <motion.button
-              key={section.id}
+              aria-label={`Go to ${section.name} section`}
               className="group relative flex items-center"
-              onClick={() => scrollToElement(`#${section.id}`)}
+              key={section.id}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              aria-label={`Go to ${section.name} section`}
+              onClick={() => scrollToElement(`#${section.id}`)}
             >
               <motion.div
                 className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
@@ -148,7 +149,7 @@ export function SectionProgress({
                 whileHover={{ x: 0 }}
               >
                 {section.name}
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gray-900 dark:bg-gray-100 rotate-45"></div>
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gray-900 dark:bg-gray-100 rotate-45" />
               </motion.div>
             </motion.button>
           );

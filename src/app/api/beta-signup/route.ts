@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { prisma } from '@/lib/db'
-import { validateRequestBody, betaSignupSchema, type BetaSignupData } from '@/lib/validation'
 import { withErrorHandler, AppError, ErrorCodes } from '@/lib/errors'
 import { withRateLimit, rateLimitConfigs } from '@/lib/rate-limit'
+import { validateRequestBody, betaSignupSchema, type BetaSignupData } from '@/lib/validation'
 
 async function handleBetaSignup(request: NextRequest) {
   // Validate request body

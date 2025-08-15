@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+
+import { cn } from '@/lib/utils';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -13,8 +14,8 @@ export function Card({ className, children, hover = true, ...props }: CardProps)
         'rounded-xl border border-gray-200 bg-white/50 backdrop-blur-sm shadow-lg dark:border-gray-800 dark:bg-gray-900/50',
         className
       )}
-      whileHover={hover ? { y: -5, scale: 1.02 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
+      whileHover={hover ? { y: -5, scale: 1.02 } : undefined}
       {...props}
     >
       {children}

@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-import { Card, CardContent } from '@/components/ui/card';
 import { Target, Users, Zap } from 'lucide-react';
+
 import { ScrollReveal, FadeInUp, StaggeredReveal } from '@/components/animations/scroll-reveal';
+import { Card, CardContent } from '@/components/ui/card';
 import { InteractiveTimeline } from '@/components/ui/interactive-timeline';
 import { timelineMilestones } from '@/data/timeline-milestones';
 
@@ -29,7 +29,7 @@ const features = [
 export function AboutSection() {
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section className="py-20 bg-gray-50 dark:bg-gray-900/50" id="about">
       <div className="container mx-auto px-4">
         <FadeInUp className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
@@ -42,16 +42,16 @@ export function AboutSection() {
         </FadeInUp>
 
         <StaggeredReveal 
-          staggerDelay={0.2}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          staggerDelay={0.2}
         >
           {features.map((feature) => (
-            <Card key={feature.title} className="h-full p-8 text-center group hover:shadow-2xl transition-all duration-300">
+            <Card className="h-full p-8 text-center group hover:shadow-2xl transition-all duration-300" key={feature.title}>
               <CardContent className="p-0">
                 <motion.div
                   className="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center"
-                  whileHover={{ scale: 1.1, rotate: 360 }}
                   transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.1, rotate: 360 }}
                 >
                   <feature.icon className="w-8 h-8 text-white" />
                 </motion.div>
@@ -73,8 +73,8 @@ export function AboutSection() {
           duration={1}
         >
           <InteractiveTimeline 
-            milestones={timelineMilestones}
             className="max-w-6xl mx-auto"
+            milestones={timelineMilestones}
           />
         </ScrollReveal>
       </div>

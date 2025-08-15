@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server'
+
 import { AppError, ErrorCodes } from './errors'
 
 interface RateLimitConfig {

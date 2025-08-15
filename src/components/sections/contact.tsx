@@ -1,11 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Mail, MapPin, Users, Rocket } from 'lucide-react';
+import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
 
 export function ContactSection() {
   const [ref, inView] = useInView({
@@ -34,14 +36,14 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+    <section className="py-20 bg-white dark:bg-gray-900" id="contact">
       <div className="container mx-auto px-4">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          ref={ref}
+          transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
             Join the Future
@@ -55,8 +57,8 @@ export function ContactSection() {
           {/* Contact Cards */}
           <div className="space-y-8">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Card className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -80,8 +82,8 @@ export function ContactSection() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Card className="p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -97,7 +99,7 @@ export function ContactSection() {
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
                     Interested in backing the future? Let's discuss how we can build tomorrow together.
                   </p>
-                  <Button variant="outline" className="w-full border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20">
+                  <Button className="w-full border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20" variant="outline">
                     Get in Touch
                   </Button>
                 </CardContent>
@@ -105,10 +107,10 @@ export function ContactSection() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
               className="text-center space-y-4"
+              initial={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400">
                 <Mail size={20} />
@@ -123,8 +125,8 @@ export function ContactSection() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <Card className="p-8 shadow-2xl">
@@ -132,47 +134,47 @@ export function ContactSection() {
                 <CardTitle className="text-2xl text-center">Send us a message</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="name">
                       Name
                     </label>
                     <input
-                      type="text"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200"
                       id="name"
                       name="name"
+                      type="text"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200"
-                      required
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="email">
                       Email
                     </label>
                     <input
-                      type="email"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200"
                       id="email"
                       name="email"
+                      type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200"
-                      required
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="type" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="type">
                       I'm interested in
                     </label>
                     <select
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200"
                       id="type"
                       name="type"
                       value={formData.type}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200"
                     >
                       <option value="general">General Inquiry</option>
                       <option value="investor">Investment Opportunity</option>
@@ -183,22 +185,22 @@ export function ContactSection() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="message">
                       Message
                     </label>
                     <textarea
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200 resize-none"
                       id="message"
                       name="message"
+                      placeholder="Tell us about your interest in DuVoX Labs..."
                       rows={4}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-all duration-200 resize-none"
-                      placeholder="Tell us about your interest in DuVoX Labs..."
-                      required
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full">
+                  <Button className="w-full" size="lg" type="submit">
                     Send Message
                   </Button>
                 </form>

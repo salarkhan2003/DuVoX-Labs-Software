@@ -54,16 +54,16 @@ export function Footer() {
             <motion.div
               className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               DuVoX Labs
             </motion.div>
             <motion.p
               className="text-gray-400 mb-6 max-w-md leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               Reimagining AI for the Real World. Building intelligent systems that enhance human life 
               through mobility and healthcare innovation.
@@ -71,24 +71,24 @@ export function Footer() {
             <motion.div
               className="flex flex-wrap gap-3"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
                 return (
                   <motion.a
-                    key={social.name}
-                    href={social.href}
                     className={`w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center ${social.hoverColor} transition-colors duration-200 group`}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
+                    href={social.href}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    key={social.name}
                     title={social.name}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <Icon size={18} className="group-hover:scale-110 transition-transform duration-200" />
+                    <Icon className="group-hover:scale-110 transition-transform duration-200" size={18} />
                   </motion.a>
                 );
               })}
@@ -100,34 +100,34 @@ export function Footer() {
             <motion.h3
               className="text-lg font-semibold mb-4"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               Products
             </motion.h3>
             <motion.ul
               className="space-y-2 text-gray-400"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               <li>
-                <a href="#products" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#products">
                   DuVoX CradAI
                 </a>
               </li>
               <li>
-                <a href="#products" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#products">
                   Mobility Co-Pilot
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#">
                   Beta Program
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#">
                   API Access
                 </a>
               </li>
@@ -139,34 +139,34 @@ export function Footer() {
             <motion.h3
               className="text-lg font-semibold mb-4"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               Company
             </motion.h3>
             <motion.ul
               className="space-y-2 text-gray-400"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               <li>
-                <a href="#about" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#about">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#founder" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#founder">
                   Our Founder
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#">
                   Careers
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#contact">
                   Contact
                 </a>
               </li>
@@ -178,19 +178,19 @@ export function Footer() {
         <motion.div
           className="border-t border-gray-800 pt-8"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0 }}
         >
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-gray-400 text-sm text-center sm:text-left">
               <span>© {currentYear} DuVoX Labs. All rights reserved.</span>
               <div className="flex items-center space-x-4">
                 <span className="hidden sm:inline">•</span>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#">
                   Privacy Policy
                 </a>
                 <span>•</span>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a className="hover:text-white transition-colors duration-200" href="#">
                   Terms of Service
                 </a>
               </div>
@@ -202,7 +202,7 @@ export function Footer() {
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Heart size={16} className="text-red-500" />
+                <Heart className="text-red-500" size={16} />
               </motion.div>
               <span>in Guntur, India</span>
               <span className="hidden sm:inline">•</span>

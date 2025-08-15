@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Mail, MapPin, Linkedin, Twitter } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function FounderSection() {
   const [ref, inView] = useInView({
@@ -13,14 +14,14 @@ export function FounderSection() {
   });
 
   return (
-    <section id="founder" className="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section className="py-20 bg-gray-50 dark:bg-gray-900/50" id="founder">
       <div className="container mx-auto px-4">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          ref={ref}
+          transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
             From Vision to Reality
@@ -32,8 +33,8 @@ export function FounderSection() {
 
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
+            initial={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Card className="overflow-hidden shadow-2xl">
@@ -42,9 +43,9 @@ export function FounderSection() {
                   {/* Founder Image & Info */}
                   <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-8 lg:p-12 text-white">
                     <motion.div
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
                       className="text-center"
                       initial={{ opacity: 0, y: 30 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.8, delay: 0.4 }}
                     >
                       <div className="w-32 h-32 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center text-4xl font-bold">
@@ -63,13 +64,13 @@ export function FounderSection() {
                       </div>
 
                       <div className="flex justify-center space-x-4">
-                        <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
+                        <Button className="text-white hover:bg-white/20" size="sm" variant="ghost">
                           <Mail size={16} />
                         </Button>
-                        <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
+                        <Button className="text-white hover:bg-white/20" size="sm" variant="ghost">
                           <Linkedin size={16} />
                         </Button>
-                        <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
+                        <Button className="text-white hover:bg-white/20" size="sm" variant="ghost">
                           <Twitter size={16} />
                         </Button>
                       </div>
@@ -79,8 +80,8 @@ export function FounderSection() {
                   {/* Founder Details */}
                   <div className="p-8 lg:p-12">
                     <motion.div
-                      initial={{ opacity: 0, x: 30 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
+                      initial={{ opacity: 0, x: 30 }}
                       transition={{ duration: 0.8, delay: 0.6 }}
                     >
                       <blockquote className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
@@ -89,7 +90,7 @@ export function FounderSection() {
 
                       <div className="space-y-6">
                         <div className="flex items-start space-x-4">
-                          <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
                           <div>
                             <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
                               B.Tech EEE
@@ -101,7 +102,7 @@ export function FounderSection() {
                         </div>
 
                         <div className="flex items-start space-x-4">
-                          <div className="w-3 h-3 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-3 h-3 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
                           <div>
                             <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
                               Startup Enthusiastic
@@ -113,7 +114,7 @@ export function FounderSection() {
                         </div>
 
                         <div className="flex items-start space-x-4">
-                          <div className="w-3 h-3 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-3 h-3 bg-green-500 rounded-full mt-2 flex-shrink-0" />
                           <div>
                             <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
                               India-First
@@ -143,9 +144,9 @@ export function FounderSection() {
 
           {/* Vision Statement */}
           <motion.div
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Card className="p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-0">

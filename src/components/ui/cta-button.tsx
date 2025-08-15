@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { forwardRef, useState, useRef } from 'react';
+
 import { cn } from '@/lib/utils';
 
 interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -97,7 +98,6 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
 
     return (
       <motion.button
-        ref={buttonRef}
         className={cn(
           baseClasses, 
           variants[variant], 
@@ -105,6 +105,7 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
           glowClasses,
           className
         )}
+        ref={buttonRef}
         whileHover={{ 
           scale: 1.02,
           transition: { duration: 0.2 }
@@ -124,8 +125,8 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
           {icon && iconPosition === 'left' && (
             <motion.span
               initial={{ x: 0 }}
-              whileHover={{ x: -2 }}
               transition={{ duration: 0.2 }}
+              whileHover={{ x: -2 }}
             >
               {icon}
             </motion.span>
@@ -136,8 +137,8 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
           {icon && iconPosition === 'right' && (
             <motion.span
               initial={{ x: 0 }}
-              whileHover={{ x: 2 }}
               transition={{ duration: 0.2 }}
+              whileHover={{ x: 2 }}
             >
               {icon}
             </motion.span>
@@ -147,12 +148,12 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
         {/* Ripple effects */}
         {rippleEffect && ripples.map((ripple) => (
           <motion.span
-            key={ripple.id}
-            className="absolute rounded-full bg-white/30 pointer-events-none"
-            style={{
-              left: ripple.x,
-              top: ripple.y,
+            animate={{
+              width: 300,
+              height: 300,
+              opacity: 0,
             }}
+            className="absolute rounded-full bg-white/30 pointer-events-none"
             initial={{
               width: 0,
               height: 0,
@@ -160,10 +161,10 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
               y: '-50%',
               opacity: 1,
             }}
-            animate={{
-              width: 300,
-              height: 300,
-              opacity: 0,
+            key={ripple.id}
+            style={{
+              left: ripple.x,
+              top: ripple.y,
             }}
             transition={{
               duration: 0.6,
@@ -196,12 +197,12 @@ export function PulsatingButton({ children, className, ...props }: CTAButtonProp
           '0 0 0 0 rgba(59, 130, 246, 0)',
         ],
       }}
+      className="rounded-xl"
       transition={{
         duration: 2,
         repeat: Infinity,
         ease: 'easeInOut',
       }}
-      className="rounded-xl"
     >
       <CTAButton className={className} {...props}>
         {children}
@@ -248,9 +249,9 @@ export function MagneticButton({ children, className, ...props }: CTAButtonProps
     >
       <CTAButton
         className={className}
-        onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
         {...props}
       >
         {children}

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Sparkles, Zap } from 'lucide-react';
+
 import { DynamicScene3D } from '@/components/3d/dynamic-scene';
 import { KineticTypography, TypewriterEffect, GlitchText } from '@/components/animations/kinetic-typography';
 import { PulsatingButton, MagneticButton } from '@/components/ui/cta-button';
@@ -39,66 +40,66 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           {/* Main Headline with Kinetic Typography */}
           <div className="mb-6">
             <KineticTypography
-              text="Reimagining AI for the"
               className="text-hero font-black text-gradient block mb-2"
-              variant="slide"
               delay={0.5}
-              staggerDelay={0.1}
               splitBy="word"
+              staggerDelay={0.1}
+              text="Reimagining AI for the"
+              variant="slide"
             />
             <GlitchText
-              text="Real World"
               className="text-hero font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-              trigger="auto"
               intensity="medium"
+              text="Real World"
+              trigger="auto"
             />
           </div>
           
           {/* Subtitle with Typewriter Effect */}
           <motion.div
+            animate={{ opacity: 1, y: 0 }}
             className="mb-8"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <TypewriterEffect
-              text="Building the future of intelligent systems that enhance human life through mobility and healthcare innovation."
               className="text-body-lg text-secondary max-w-3xl mx-auto"
+              cursor={false}
               delay={1500}
               speed={30}
-              cursor={false}
+              text="Building the future of intelligent systems that enhance human life through mobility and healthcare innovation."
             />
           </motion.div>
           
           {/* Enhanced CTA Buttons */}
           <motion.div 
+            animate={{ opacity: 1, y: 0 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.5 }}
           >
             <PulsatingButton
-              size="lg"
+              className="text-lg px-8 py-4"
               icon={<Sparkles size={20} />}
               iconPosition="left"
-              className="text-lg px-8 py-4"
+              size="lg"
             >
               Join Waitlist
             </PulsatingButton>
             
             <MagneticButton
-              variant="outline"
-              size="lg"
+              className="text-lg px-8 py-4 border-2 border-gradient-to-r from-blue-500 to-purple-500"
               icon={<Zap size={20} />}
               iconPosition="right"
-              className="text-lg px-8 py-4 border-2 border-gradient-to-r from-blue-500 to-purple-500"
+              size="lg"
+              variant="outline"
             >
               Investor Preview
             </MagneticButton>
@@ -106,18 +107,17 @@ export function HeroSection() {
 
           {/* Enhanced Stats with Animations */}
           <motion.div 
+            animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3 }}
           >
             <motion.div 
               className="text-center group cursor-pointer"
-              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ scale: 1.05 }}
             >
               <motion.div 
-                className="text-3xl md:text-4xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors"
                 animate={{ 
                   textShadow: [
                     '0 0 0px rgba(59, 130, 246, 0)',
@@ -125,6 +125,7 @@ export function HeroSection() {
                     '0 0 0px rgba(59, 130, 246, 0)',
                   ]
                 }}
+                className="text-3xl md:text-4xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors"
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 2
@@ -136,11 +137,10 @@ export function HeroSection() {
             
             <motion.div 
               className="text-center group cursor-pointer"
-              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ scale: 1.05 }}
             >
               <motion.div 
-                className="text-3xl md:text-4xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors"
                 animate={{ 
                   textShadow: [
                     '0 0 0px rgba(139, 92, 246, 0)',
@@ -148,6 +148,7 @@ export function HeroSection() {
                     '0 0 0px rgba(139, 92, 246, 0)',
                   ]
                 }}
+                className="text-3xl md:text-4xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors"
                 transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
               >
                 1
@@ -159,11 +160,10 @@ export function HeroSection() {
             
             <motion.div 
               className="text-center group cursor-pointer"
-              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ scale: 1.05 }}
             >
               <motion.div 
-                className="text-3xl md:text-4xl font-bold text-green-400 mb-2 group-hover:text-green-300 transition-colors"
                 animate={{ 
                   rotate: [0, 5, -5, 0],
                   textShadow: [
@@ -172,6 +172,7 @@ export function HeroSection() {
                     '0 0 0px rgba(16, 185, 129, 0)',
                   ]
                 }}
+                className="text-3xl md:text-4xl font-bold text-green-400 mb-2 group-hover:text-green-300 transition-colors"
                 transition={{ duration: 2, repeat: Infinity, delay: 1 }}
               >
                 ∞
@@ -187,8 +188,8 @@ export function HeroSection() {
       {/* Enhanced Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <AnimatedScrollDown 
-          targetSection="#about" 
-          className="text-white/60 hover:text-white"
+          className="text-white/60 hover:text-white" 
+          targetSection="#about"
         />
       </div>
 

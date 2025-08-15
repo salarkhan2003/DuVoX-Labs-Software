@@ -1,8 +1,9 @@
 'use client';
 
-import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera, AdaptiveDpr, AdaptiveEvents } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
+
 import { FloatingOrb, ParticleField, GeometricShapes, ConnectedNodes } from './floating-orb';
 
 interface Scene3DProps {
@@ -71,14 +72,14 @@ export function Scene3D({ quality = 'high', enableInteraction = false }: Scene3D
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas
+        camera={{ position: [0, 0, 8], fov: 60 }}
         dpr={settings.pixelRatio}
+        frameloop="demand" // Only render when needed
         gl={{
           antialias: settings.antialias,
           alpha: true,
           powerPreference: 'high-performance',
         }}
-        camera={{ position: [0, 0, 8], fov: 60 }}
-        frameloop="demand" // Only render when needed
       >
         <Suspense fallback={null}>
           {/* Adaptive performance components */}
@@ -86,29 +87,29 @@ export function Scene3D({ quality = 'high', enableInteraction = false }: Scene3D
           <AdaptiveEvents />
           
           {/* Camera */}
-          <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={60} />
+          <PerspectiveCamera makeDefault fov={60} position={[0, 0, 8]} />
           
           {/* Lighting setup */}
           <ambientLight intensity={0.3} />
           <directionalLight
-            position={[10, 10, 5]}
-            intensity={0.8}
-            color="#ffffff"
             castShadow={settings.shadows}
+            color="#ffffff"
+            intensity={0.8}
+            position={[10, 10, 5]}
           />
           <pointLight
-            position={[-10, -10, -10]}
-            intensity={0.6}
             color="#8b5cf6"
-            distance={20}
             decay={2}
+            distance={20}
+            intensity={0.6}
+            position={[-10, -10, -10]}
           />
           <pointLight
-            position={[10, -10, 10]}
-            intensity={0.4}
             color="#06b6d4"
-            distance={15}
             decay={2}
+            distance={15}
+            intensity={0.4}
+            position={[10, -10, 10]}
           />
           
           {/* 3D Objects */}
@@ -118,7 +119,7 @@ export function Scene3D({ quality = 'high', enableInteraction = false }: Scene3D
           <ConnectedNodes />
           
           {/* Fog for depth */}
-          <fog attach="fog" args={['#000000', 8, 25]} />
+          <fog args={['#000000', 8, 25]} attach="fog" />
         </Suspense>
       </Canvas>
     </div>

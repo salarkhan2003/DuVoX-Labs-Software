@@ -1,6 +1,7 @@
-import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
+
+import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
@@ -27,8 +28,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <motion.button
-        ref={ref}
         className={cn(baseClasses, variants[variant], sizes[size], className)}
+        ref={ref}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         {...props}

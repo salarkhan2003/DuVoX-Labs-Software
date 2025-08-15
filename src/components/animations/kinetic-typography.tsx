@@ -115,21 +115,21 @@ export function KineticTypography({
 
   return (
     <motion.div
-      ref={ref}
-      className={`${className} ${gradient ? 'text-gradient' : ''}`}
-      variants={containerVariants}
-      initial="hidden"
       animate={controls}
+      className={`${className} ${gradient ? 'text-gradient' : ''}`}
+      initial="hidden"
+      ref={ref}
+      variants={containerVariants}
     >
       {textParts.map((part, index) => (
         <motion.span
-          key={index}
-          variants={itemVariants}
           className="inline-block"
+          key={index}
           style={{
             marginRight: splitBy === 'word' ? '0.25em' : '0',
             marginBottom: splitBy === 'line' ? '0.5em' : '0',
           }}
+          variants={itemVariants}
         >
           {part}
           {splitBy === 'line' && index < textParts.length - 1 && <br />}
@@ -249,9 +249,6 @@ export function GlitchText({
 
   return (
     <motion.span
-      className={`relative inline-block ${className}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       animate={isGlitching ? {
         x: [0, -2, 2, -1, 1, 0],
         filter: [
@@ -262,17 +259,19 @@ export function GlitchText({
           'hue-rotate(0deg)',
         ],
       } : {}}
+      className={`relative inline-block ${className}`}
       transition={{
         duration: settings.duration,
         repeat: isGlitching ? settings.iterations : 0,
         ease: 'easeInOut',
       }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {text}
       {isGlitching && (
         <>
           <motion.span
-            className="absolute inset-0 text-red-500 opacity-70"
             animate={{
               x: [-1, 1, -1],
               clipPath: [
@@ -282,6 +281,7 @@ export function GlitchText({
                 'inset(0 0 0 0)',
               ],
             }}
+            className="absolute inset-0 text-red-500 opacity-70"
             transition={{
               duration: settings.duration,
               repeat: settings.iterations,
@@ -291,7 +291,6 @@ export function GlitchText({
             {text}
           </motion.span>
           <motion.span
-            className="absolute inset-0 text-cyan-500 opacity-70"
             animate={{
               x: [1, -1, 1],
               clipPath: [
@@ -301,6 +300,7 @@ export function GlitchText({
                 'inset(0 0 0 0)',
               ],
             }}
+            className="absolute inset-0 text-cyan-500 opacity-70"
             transition={{
               duration: settings.duration,
               repeat: settings.iterations,
@@ -332,10 +332,10 @@ export function FloatingText({
 }: FloatingTextProps) {
   return (
     <motion.div
-      className={className}
       animate={{
         y: [0, -amplitude, 0],
       }}
+      className={className}
       transition={{
         duration: frequency,
         repeat: Infinity,

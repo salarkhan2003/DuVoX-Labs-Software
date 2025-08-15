@@ -17,11 +17,11 @@ export default function TimelineTestPage() {
             Full Featured Timeline
           </h2>
           <InteractiveTimeline 
-            milestones={timelineMilestones}
             autoPlay={false}
             autoPlayInterval={3000}
-            showNavigation={true}
             className="max-w-6xl mx-auto"
+            milestones={timelineMilestones}
+            showNavigation={true}
           />
         </div>
 
@@ -32,11 +32,11 @@ export default function TimelineTestPage() {
           </h2>
           <div className="lg:hidden">
             <InteractiveTimeline 
-              milestones={timelineMilestones}
               autoPlay={true}
               autoPlayInterval={4000}
-              showNavigation={true}
               className="max-w-4xl mx-auto"
+              milestones={timelineMilestones}
+              showNavigation={true}
             />
           </div>
           <div className="hidden lg:block text-center text-gray-600 dark:text-gray-400">
@@ -50,9 +50,9 @@ export default function TimelineTestPage() {
             Minimal Timeline (No Navigation)
           </h2>
           <InteractiveTimeline 
+            className="max-w-4xl mx-auto"
             milestones={timelineMilestones.slice(0, 2)}
             showNavigation={false}
-            className="max-w-4xl mx-auto"
           />
         </div>
       </div>

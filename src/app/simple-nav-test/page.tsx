@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+
 import { Button } from '@/components/ui/button';
-import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
-import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import { ScrollIndicator } from '@/components/ui/scroll-indicator';
+import { useScrollSpy } from '@/hooks/use-scroll-spy';
+import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 const sections = [
   { id: 'section1', name: 'Section 1', color: 'bg-blue-500' },
@@ -65,9 +66,9 @@ export default function SimpleNavTest() {
       <div className="pt-32">
         {sections.map(section => (
           <section
-            key={section.id}
-            id={section.id}
             className={`min-h-screen flex items-center justify-center ${section.color} text-white`}
+            id={section.id}
+            key={section.id}
           >
             <div className="text-center">
               <h2 className="text-6xl font-bold mb-4">{section.name}</h2>
