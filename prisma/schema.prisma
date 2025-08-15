@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Users table for admin authentication
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         String   @default("admin")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+// Contact submissions
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  message   String
+  interest  String
+  status    String   @default("new")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("contact_submissions")
+}
+
+// Beta signups
+model BetaSignup {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  product   String
+  company   String?
+  useCase   String?  @map("use_case")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("beta_signups")
+}
+
+// Chat sessions and messages
+model ChatSession {
+  id           String        @id @default(cuid())
+  sessionId    String        @unique @map("session_id")
+  userIp       String?       @map("user_ip")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  lastActivity DateTime      @default(now()) @map("last_activity")
+  messages     ChatMessage[]
+
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id        String      @id @default(cuid())
+  sessionId String      @map("session_id")
+  message   String
+  sender    String // 'user' or 'bot'
+  createdAt DateTime    @default(now()) @map("created_at")
+  session   ChatSession @relation(fields: [sessionId], references: [sessionId], onDelete: Cascade)
+
+  @@map("chat_messages")
+}
+
+// Analytics tracking
+model PageView {
+  id        String   @id @default(cuid())
+  page      String
+  userAgent String?  @map("user_agent")
+  ipAddress String?  @map("ip_address")
+  referrer  String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("page_views")
+}
