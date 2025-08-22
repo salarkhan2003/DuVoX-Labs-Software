@@ -2,22 +2,6 @@ import type { TimelineMilestone } from '@/components/ui/interactive-timeline';
 
 export const timelineMilestones: TimelineMilestone[] = [
   {
-    id: 'foundation-2024',
-    year: '2024',
-    title: 'Foundation & Vision',
-    description: 'DuVoX Labs established with a clear mission to democratize AI technology and make it accessible to everyone.',
-    details: 'Founded by a team of AI researchers and engineers with decades of combined experience in machine learning, embedded systems, and healthcare technology.',
-    icon: 'target',
-    category: 'foundation',
-    achievements: [
-      'Incorporated DuVoX Labs as an independent innovation lab',
-      'Assembled core team of AI researchers and engineers',
-      'Defined mission to democratize AI technology',
-      'Established partnerships with leading research institutions',
-      'Secured initial funding for product development'
-    ]
-  },
-  {
     id: 'development-2025',
     year: '2025',
     title: 'Product Development',

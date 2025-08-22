@@ -90,6 +90,12 @@ export function HeroSection() {
               icon={<Sparkles size={20} />}
               iconPosition="left"
               size="lg"
+              onClick={() => {
+                try { window.localStorage.setItem('duvox_prefill_type', 'beta'); } catch (e) { /* ignore */ }
+                // navigate to contact section
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Join Waitlist
             </PulsatingButton>
@@ -100,10 +106,15 @@ export function HeroSection() {
               iconPosition="right"
               size="lg"
               variant="outline"
+              onClick={() => {
+                try { window.localStorage.setItem('duvox_prefill_type', 'investor'); } catch (e) { /* ignore */ }
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Investor Preview
             </MagneticButton>
-          </motion.div>
+           </motion.div>
 
           {/* Enhanced Stats with Animations */}
           <motion.div 
@@ -140,21 +151,10 @@ export function HeroSection() {
               transition={{ type: "spring", stiffness: 300 }}
               whileHover={{ scale: 1.05 }}
             >
-              <motion.div 
-                animate={{ 
-                  textShadow: [
-                    '0 0 0px rgba(139, 92, 246, 0)',
-                    '0 0 10px rgba(139, 92, 246, 0.5)',
-                    '0 0 0px rgba(139, 92, 246, 0)',
-                  ]
-                }}
-                className="text-3xl md:text-4xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors"
-                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-              >
-                1
-              </motion.div>
+              {/* number removed per request; keep spacing */}
+              <div className="mb-2 h-6" />
               <div className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                Passionate Founder
+                Core Engineering Team
               </div>
             </motion.div>
             
@@ -193,12 +193,7 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Performance Indicator (Development only) */}
-      {process.env.NODE_ENV === 'development' && fps > 0 && (
-        <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
-          FPS: {fps} | Quality: {currentQuality}
-        </div>
-      )}
+      {/* Performance Indicator removed for production and public site cleanliness */}
     </section>
   );
 }

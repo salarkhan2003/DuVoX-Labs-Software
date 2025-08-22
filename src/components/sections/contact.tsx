@@ -1,13 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Users, Rocket } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, MapPin, Users, Rocket, Phone } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { useInView } from 'react-intersection-observer';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
 
 export function ContactSection() {
   const [ref, inView] = useInView({
@@ -22,11 +22,27 @@ export function ContactSection() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-  };
+  // If a CTA (hero or elsewhere) set a prefill in localStorage, apply it on mount
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const prefill = window.localStorage.getItem('duvox_prefill_type');
+        if (prefill) {
+          setFormData((prev) => ({ ...prev, type: prefill }));
+          // Scroll the main contact form into view so the user sees the prefilled choice
+          const el = document.getElementById('main-contact-form');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          // remove the prefill so it doesn't persist across sessions
+          window.localStorage.removeItem('duvox_prefill_type');
+        }
+      }
+    } catch (e) {
+      // ignore errors (e.g., localStorage disabled)
+    }
+  }, []);
+ 
+   // Formspree hook: replace with your form ID
+   const [state, handleSubmit] = useForm('mrbgjadj');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -74,7 +90,13 @@ export function ContactSection() {
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
                     Get notified when our products launch and be among the first to experience the future of AI.
                   </p>
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
+                  <Button
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+                    onClick={() => {
+                      setFormData((prev) => ({ ...prev, type: 'beta' }));
+                      document.getElementById('main-contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
                     Join Waitlist
                   </Button>
                 </CardContent>
@@ -99,7 +121,14 @@ export function ContactSection() {
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
                     Interested in backing the future? Let's discuss how we can build tomorrow together.
                   </p>
-                  <Button className="w-full border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20" variant="outline">
+                  <Button
+                    className="w-full border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20"
+                    variant="outline"
+                    onClick={() => {
+                      setFormData((prev) => ({ ...prev, type: 'investor' }));
+                      document.getElementById('main-contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
                     Get in Touch
                   </Button>
                 </CardContent>
@@ -118,7 +147,11 @@ export function ContactSection() {
               </div>
               <div className="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400">
                 <MapPin size={20} />
-                <span>Guntur, India</span>
+                <span>India</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400">
+                <Phone size={20} />
+                <a href="tel:+917993547438" className="underline hover:text-gray-800 dark:hover:text-white">+91 7993547438</a>
               </div>
             </motion.div>
           </div>
@@ -134,7 +167,13 @@ export function ContactSection() {
                 <CardTitle className="text-2xl text-center">Send us a message</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                {state.succeeded ? (
+                  <div className="text-center py-12">
+                    <h3 className="text-xl font-semibold mb-2">Thanks — we'll be in touch!</h3>
+                    <p className="text-gray-600">Your message has been received and will be forwarded to our inbox.</p>
+                  </div>
+                ) : (
+                <form id="main-contact-form" className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="name">
                       Name
@@ -163,6 +202,7 @@ export function ContactSection() {
                       value={formData.email}
                       onChange={handleInputChange}
                     />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
                   </div>
 
                   <div>
@@ -198,17 +238,22 @@ export function ContactSection() {
                       value={formData.message}
                       onChange={handleInputChange}
                     />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
                   </div>
 
-                  <Button className="w-full" size="lg" type="submit">
-                    Send Message
+                  {Array.isArray(state.errors) && (state.errors as any).length > 0 && (
+                    <div className="text-sm text-red-500">{(state.errors as any).map((e: any) => e.message).join(', ')}</div>
+                  )}
+                  <Button className="w-full" size="lg" type="submit" disabled={state.submitting}>
+                    {state.submitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
+                )}
+               </CardContent>
+             </Card>
+           </motion.div>
+         </div>
+       </div>
+     </section>
+   );
+ }

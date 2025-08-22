@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Linkedin } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
 import { Button } from '@/components/ui/button';
@@ -60,18 +60,27 @@ export function FounderSection() {
                       
                       <div className="flex items-center justify-center space-x-2 mb-6 text-blue-100">
                         <MapPin size={16} />
-                        <span>Guntur, India</span>
+                        <span>India</span>
                       </div>
 
                       <div className="flex justify-center space-x-4">
-                        <Button className="text-white hover:bg-white/20" size="sm" variant="ghost">
+                        <Button
+                          className="text-white hover:bg-white/20"
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => { window.location.href = 'mailto:psalarkhan22@gmail.com'; }}
+                          aria-label="Email Patan"
+                        >
                           <Mail size={16} />
                         </Button>
-                        <Button className="text-white hover:bg-white/20" size="sm" variant="ghost">
+                        <Button
+                          className="text-white hover:bg-white/20"
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => window.open('https://www.linkedin.com/in/salarkhan-patan-75365a230', '_blank', 'noopener,noreferrer')}
+                          aria-label="Patan LinkedIn"
+                        >
                           <Linkedin size={16} />
-                        </Button>
-                        <Button className="text-white hover:bg-white/20" size="sm" variant="ghost">
-                          <Twitter size={16} />
                         </Button>
                       </div>
                     </motion.div>
@@ -105,10 +114,10 @@ export function FounderSection() {
                           <div className="w-3 h-3 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
                           <div>
                             <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
-                              Startup Enthusiastic
+                              Core Engineering Team
                             </h4>
                             <p className="text-gray-600 dark:text-gray-400">
-                              Innovation & Entrepreneurship
+                              A strong, professional engineering team focused on reliable systems, scalable AI, and product-first delivery.
                             </p>
                           </div>
                         </div>
@@ -125,13 +134,17 @@ export function FounderSection() {
                           </div>
                         </div>
                       </div>
-
+                    
                       <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                         <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 mb-4">
                           <Mail size={16} />
                           <span>psalarkhan22@gmail.com</span>
                         </div>
-                        <Button className="w-full">
+                        <Button
+                          className="w-full"
+                          onClick={() => window.open('https://www.linkedin.com/in/salarkhan-patan-75365a230', '_blank', 'noopener,noreferrer')}
+                          aria-label="Connect with Patan on LinkedIn"
+                        >
                           Connect with Patan
                         </Button>
                       </div>

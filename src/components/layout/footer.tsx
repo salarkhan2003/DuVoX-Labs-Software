@@ -204,11 +204,11 @@ export function Footer() {
               >
                 <Heart className="text-red-500" size={16} />
               </motion.div>
-              <span>in Guntur, India</span>
+              <span>in India</span>
               <span className="hidden sm:inline">•</span>
               <div className="hidden sm:flex items-center space-x-1">
                 <MapPin size={16} />
-                <span>Guntur, India</span>
+                <span>India</span>
               </div>
             </div>
           </div>

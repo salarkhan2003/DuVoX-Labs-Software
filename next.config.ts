@@ -1,13 +1,10 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   eslint: {
-    ignoreDuringBuilds: true, // ✅ Skip ESLint on build
+    ignoreDuringBuilds: false, // ✅ Enable ESLint during build
   },
   typescript: {
-    ignoreBuildErrors: true, // ✅ Skip TypeScript errors on build
+    ignoreBuildErrors: false, // ✅ Enable TypeScript errors on build
   },
 }
 
